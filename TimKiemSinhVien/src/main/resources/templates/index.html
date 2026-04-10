@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm kiếm Sinh viên</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Xây dựng ứng dụng tìm kiếm</h2>
+    <form th:action="@{/search}" method="post">
+        <div class="form-group">
+            <label>Mã sinh viên (ID):</label>
+            <input type="text" name="id" th:value="${oldId}" placeholder="Nhập ID...">
+        </div>
+        <div class="form-group">
+            <label>Họ tên:</label>
+            <input type="text" name="name" th:value="${oldName}" placeholder="Nhập tên...">
+        </div>
+        <div class="form-group">
+            <label>Khoa/Phòng ban:</label>
+            <input type="text" name="department" th:value="${oldDept}" placeholder="Nhập khoa...">
+        </div>
+        <button type="submit">Search</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Sinh viên</title>
+    <style>
+        .error { color: red; font-size: 0.8em; }
+        .hidden { display: none; }
+        table { border-collapse: collapse; margin-top: 10px; }
+        td { padding: 5px; }
+    </style>
+</head>
+<body>
+<!-- FORM NHẬP LIỆU -->
+<div id="inputForm">
+    <h2>Nhập thông tin sinh viên</h2>
+    <table>
+        <tr>
+            <td>ID:</td>
+            <td><input type="text" id="id"> <span id="idError" class="error"></span></td>
+        </tr>
+        <tr>
+            <td>Tên:</td>
+            <td><input type="text" id="name"> <span id="nameError" class="error"></span></td>
+        </tr>
+        <tr>
+            <td>Ngày sinh:</td>
+            <td><input type="date" id="dob"></td>
+        </tr>
+        <tr>
+            <td>Phòng ban:</td>
+            <td>
+                <select id="department">
+                    <option value="">--Chọn--</option>
+                    <option value="IT">Công nghệ thông tin</option>
+                    <option value="Biz">Kinh tế</option>
+                    <option value="Lang">Ngôn ngữ</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="preview()">Add</button>
+    <button onclick="resetForm()">Reset</button>
+</div>
+
+<!-- TRANG XÁC NHẬN -->
+<div id="confirmPage" class="hidden">
+    <h2>Xác nhận thông tin</h2>
+    <div id="previewData"></div>
+    <br>
+    <button onclick="confirmSave()">Confirm</button>
+    <button onclick="backToForm()">Back</button>
+</div>
+
+<script>
+    const API_URL = "/api/students";
+
+    // Tự động lấy Department cũ từ Session khi load trang
+    window.onload = async () => {
+        const resp = await fetch(API_URL + "/last-dept");
+        const lastDept = await resp.text();
+        if(lastDept) document.getElementById("department").value = lastDept;
+    };
+
+    async function preview() {
+        // Xóa lỗi cũ
+        document.querySelectorAll('.error').forEach(el => el.innerText = '');
+
+        const data = {
+            id: document.getElementById("id").value,
+            name: document.getElementById("name").value,
+            dob: document.getElementById("dob").value,
+            department: document.getElementById("department").value
+        };
+
+        const resp = await fetch(API_URL + "/preview", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+
+        if (resp.ok) {
+            const student = await resp.json();
+            document.getElementById("inputForm").classList.add("hidden");
+            document.getElementById("confirmPage").classList.remove("hidden");
+            document.getElementById("previewData").innerHTML = `
+                <p>ID: ${student.id}</p>
+                <p>Tên: ${student.name}</p>
+                <p>Phòng ban: ${student.department}</p>
+            `;
+        } else {
+            const msg = await resp.text();
+            // Hiển thị lỗi cạnh ô nhập (Ăn điểm 3đ validate)
+            if(msg.includes("ID")) document.getElementById("idError").innerText = msg;
+            else alert(msg);
+        }
+    }
+
+    async function confirmSave() {
+        const resp = await fetch(API_URL + "/confirm", { method: 'POST' });
+        if (resp.ok) {
+            alert("Thêm thành công!");
+            location.reload(); // Quay lại form ban đầu
+        }
+    }
+
+    function backToForm() {
+        document.getElementById("inputForm").classList.remove("hidden");
+        document.getElementById("confirmPage").classList.add("hidden");
+    }
+
+    function resetForm() {
+        document.querySelectorAll('input').forEach(i => i.value = '');
+        document.getElementById("department").value = '';
+    }
+</script>
+</body>
+</html>
