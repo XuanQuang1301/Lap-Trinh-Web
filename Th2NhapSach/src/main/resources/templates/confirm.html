@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Xac nhan sach</title>
+</head>
+<body>
+    <h2>Xac nhan thong tin sach</h2>
+    <table>
+        <tr><th>Book code</th> <td th:text="${bookCode}"></td></tr>
+        <tr><th>Ten sach</th> <td th:text="${title}"></td></tr>
+        <tr><th>tac gia</th> <td th:text="${author}"></td></tr>
+        <tr><th>the loai</th> <td th:text="${category}"></td></tr>
+    </table>
+    <form action="/confirm" method="post" style = "display:inline">
+        <input type="hidden" name="bookCode" th:value="${bookCode}"/>
+        <input type="hidden" name="title"     th:value="${title}"/>
+        <input type="hidden" name="author"    th:value="${author}"/>
+        <input type="hidden" name="category"  th:value="${category}"/>
+        <button type="submit">Confirm</button>
+    </form>
+    <form action="/" method="get" style="display:inline">
+        <button type="submit" class="btn-back">Back</button>
+    </form>
+</body>
+</html>

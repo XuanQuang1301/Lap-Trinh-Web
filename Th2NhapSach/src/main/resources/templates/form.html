@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nhập sách</title>
+</head>
+<body>
+    <h2>Nhap thong tin sach</h2>
+    <form action="/add" method="post">
+    <div>
+        <label>Book Code:</label>
+        <input type="text" name = "bookCode" th:value="${bookCode}" placeholder="Nhập mã sách..."/>
+        <div class="error" th:if="${errorBookCode}" th:text="${errorBookCode}"></div>
+    </div>
+    <div class="field">
+        <label>Tên Sách:</label>
+        <input type="text" name="title"
+               th:value="${title}" placeholder="Nhập tên sách..."/>
+        <div class="error" th:if="${errorTitle}" th:text="${errorTitle}"></div>
+    </div>
+    <div class="field">
+        <label>Tác Giả:</label>
+        <input type="text" name="author"
+               th:value="${author}" placeholder="Nhập tên tác giả..."/>
+        <div class="error" th:if="${errorAuthor}" th:text="${errorAuthor}"></div>
+    </div>
+    <div>
+        <label>The loai:</label>
+        <select name="category">
+            <option value="">Chon the loai</option>
+            <option th:each="cat : ${categories}"
+                    th:value="${cat}"
+                    th:text="${cat}"
+                    th:selected="${cat == lastCategory}">
+            </option>
+        </select>
+        <div class="error" th:if="${errorCategory}" th:text="${errorCategory}"></div>
+    </div>
+    <button type="submit">Add</button>
+    <button type = "reset">Reset</button>
+    </form>
+</body>
+</html>

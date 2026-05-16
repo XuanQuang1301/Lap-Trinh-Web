@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tim kiem thong tin nha</title>
+</head>
+<body>
+    <h2> Tim kiem thong tin nha </h2>
+    <form action="/search" method="post">
+        <div>
+            <label>Id:</label>
+            <input type="text" name = "id" th:value="${session.searchId}">
+        </div>
+        <div>
+            <label>Dia chi:</label>
+            <input type="text" name = "address" th:value="${session.searchAddress}">
+        </div>
+        <div>
+            <label>Dien tich:</label>
+            <input type="text" name = "areaStr" th:value="${session.searchArea}">
+        </div>
+        <div>
+            <label>Loai nha:</label>
+            <input type="text" name="type" th:value="${session.searchType}" />
+        </div>
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>

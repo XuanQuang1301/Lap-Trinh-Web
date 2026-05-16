@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ket qua tim kieam</title>
+</head>
+<body>
+<h2>Danh sach nha thoa man</h2>
+<table>
+    <tr>
+        <th>ID</th><th>Địa chỉ</th><th>Diện tích</th><th>Loại nhà</th><th>Hành động</th>
+    </tr>
+    <tr th:each="house: ${houses}">
+        <td th:text="${house.id}"></td>
+        <td th:text="${house.address}"></td>
+        <td th:text="${house.area}"></td>
+        <td th:text="${house.type}"></td>
+        <td>
+            <form th:if="${house.sold == 0}" th:action="@{/buy}" method="post">
+                <input type="hidden" name="id" th:value="${house.id}" />
+                <button type="submit">Buy</button>
+            </form>
+            <span th:if="${house.sold == 1}" style="color: red; font-weight: bold;">Sold</span>
+        </td>
+    </tr>
+</table>
+<br>
+<a th:href="@{/}">Quay lại tìm kiếm</a>
+</body>
+</html>
