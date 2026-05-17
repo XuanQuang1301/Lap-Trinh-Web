@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Danh sach sinh vien cho duyet</title>
+</head>
+<body>
+<h2>Danh sach sinh vien chua duyet</h2>
+<table>
+    <tr>
+        <th>Id</th><th>Ho va ten</th><th>Ngay sinh</th><th>Khoa</th><th>Hanh dong</th>
+    </tr>
+    <tr th:each="sv: ${student}">
+        <td th:text="${sv.id}"></td>
+        <td th:text="${sv.name}"></td>
+        <td th:text="${sv.dob}"></td>
+        <td th:text="${sv.department}"></td>
+        <td>
+            <form action="approve" method="post" style="display:inline;">
+                <input type="hidden" name = "id" th:value="${sv.id}">
+                <button onclick="submit">Approve</button>
+            </form>
+            <form action="delete-request" method="post" style="display:inline;">
+                <input type="hidden" name = "id" th:value="${sv.id}">
+                <button onclick="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+<a th:href="@{/}">Quay lai trang chu</a>
+</body>
+</html>

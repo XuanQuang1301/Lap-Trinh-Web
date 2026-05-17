@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nhap Sinh vien</title>
+</head>
+<body>
+    <h2>Nhap thong tin sinh vien</h2>
+    <form action="/add" method="post">
+        <div>
+            <label>Ma SV (Id):</label>
+            <input type="text" name = "id">
+            <div th:if="${errorId}" th:text="${errorId}"></div>
+        </div>
+        <div>
+            <label>Ten SV (Name):</label>
+            <input type="text" name = "name">
+            <div th:if="${errorName}" th:text="${errorName}"></div>
+        </div>
+        <div>
+            <label>Ngay sinh (Dob):</label>
+            <input type="text" name = "dob">
+            <div th:if="${errorDob}" th:text="${errorDob}"></div>
+        </div>
+        <div>
+            <label>Khoa (Department):</label>
+            <select name="department">
+                <option value="">-- Chọn Khoa --</option>
+                <option th:each="department : ${department}"
+                        th:value="${department}"
+                        th:text="${department}"
+                        th:selected="${department == lastDepartment}">
+                </option>
+            </select>
+            <span class="error" th:if="${errDept}" th:text="${errDept}"></span>
+        </div>
+        <br>
+        <button onclick="submit">Add</button>
+        <button type="reset">Reset</button>
+    </form>
+</body>
+</html>

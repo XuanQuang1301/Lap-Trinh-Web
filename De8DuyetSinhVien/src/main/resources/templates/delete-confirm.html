@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Xac nhan xoa sinh vien</title>
+</head>
+<body>
+<ul>
+    <li><strong>ID</strong><span th:text="${student.id}"></span></li>
+    <li><strong>Name</strong><span th:text="${student.name}"></span></li>
+    <li><strong>Dob</strong><span th:text="${student.dob}"></span></li>
+    <li><strong>Department</strong><span th:text="${student.department}"></span></li>
+</ul>
+<form action="delete-confirm" method="post">
+    <input type="hidden" name = "id" th:value="${student.id}">
+    <button onclick="submit">Xac nhan</button>
+</form>
+<form action="student" method="get">
+    <button onclick="submit">Huy</button>
+</form>
+</body>
+</html>
