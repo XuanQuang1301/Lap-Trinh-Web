@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Danh sach sinh vien</title>
+</head>
+<body>
+<h2>Ket qua tim kiem</h2>
+<table>
+    <tr>
+        <th>Id</th><th>Name</th><th>Ngay sinh</th><th>Khoa</th><th>Hanh dong</th>
+    </tr>
+    <tr th:each="s: ${student}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.dob}"></td>
+        <td th:text="${s.department}"></td>
+        <td>
+            <form th:if="${s.selected == 0}" action="select" method="post">
+                <input type="hidden" name = "id" th:value="${s.id}">
+                <button onclick="submit">Select</button>
+            </form>
+            <span th:if="${s.selected == 1}">Selected</span>
+        </td>
+    </tr>
+</table>
+<br>
+<a th:href="@{/}">Quay lai trang tim kiem</a>
+</body>
+</html>

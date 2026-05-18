@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trang tim kiem sinh vien</title>
+</head>
+<body>
+<h2>Nhap thong tin sinh vien</h2>
+<form action="search" method="post">
+    <div>
+        <label>Ma SV:</label>
+        <input type="text" name = "id" th:value="${id}">
+    </div>
+    <div>
+        <label>Ten SV:</label>
+        <input type="text" name = "name" th:value="${name}">
+    </div>
+    <div>
+        <label>Ngay Sinh:</label>
+        <input type="date" name = "dob" th:value="${dob}">
+    </div>
+    <div>
+        <label>Khoa:</label>
+        <input type="text" name = "department" th:value="${department}">
+    </div>
+    <br>
+    <button onclick="submit">Search</button>
+</form>
+</body>
+</html>
