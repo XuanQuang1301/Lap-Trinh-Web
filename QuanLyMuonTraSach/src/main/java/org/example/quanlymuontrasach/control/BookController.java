@@ -47,7 +47,7 @@ public class BookController {
     public String returnBook(@RequestParam String id) {
         Book book = bookRepository.findById(id).orElse(null);
         if (book != null) {
-            book.setStatus(0); // Đổi thành Có sẵn
+            book.setStatus(0);
             bookRepository.save(book);
         }
         return "redirect:/";

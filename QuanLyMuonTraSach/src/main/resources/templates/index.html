@@ -24,13 +24,13 @@
         <td th:text="${book.author}"></td>
         <td th:text="${book.category}"></td>
         <td>
-            <form th:if="book.status == 0" action="/borrow" method="post">
+            <form th:if="${book.status == 0}" action="/borrow" method="post">
                 <input type="hidden" name = "id" th:value="${book.id}">
                 <button onclick="submit">Mượn sách</button>
             </form>
-            <form th:if="book.status == 1" action="/return" method="post">
+            <form th:if="${book.status == 1}" action="/return" method="post">
                 <input type="hidden" name = "id" th:value="${book.id}">
-                <button onclick="submit">Trả sach</button>
+                <button onclick="submit">Trả sách</button>
             </form>
         </td>
     </tr>
