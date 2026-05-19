@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trang chủ</title>
+</head>
+<body>
+<h2>Tim kiem sach</h2>
+<form action="search" method="post">
+    Nhap the loai sach: <input type="text" name = "category" th:value="${searchCategory}">
+    <button onclick="submit">Serch</button>
+</form>
+<hr>
+<table>
+    <tr>
+        <th>Ma sach</th> <th>Ten sach</th> <th>Tac gia</th> <th>The loai</th> <th>Action</th>
+    </tr>
+    <tr th:each="book: ${books}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.category}"></td>
+        <td>
+            <form th:if="book.status == 0" action="/borrow" method="post">
+                <input type="hidden" name = "id" th:value="${book.id}">
+                <button onclick="submit">Mượn sách</button>
+            </form>
+            <form th:if="book.status == 1" action="/return" method="post">
+                <input type="hidden" name = "id" th:value="${book.id}">
+                <button onclick="submit">Trả sach</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+<a th:href="@{/add}">Thêm sách mới </a>
+</body>
+</html>

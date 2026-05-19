@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Them sach</title>
+</head>
+<body>
+<h2>Nhập thông tin thêm sách </h2>
+<form action="/add-submit" method="post">
+    <div>
+        Ma sach: <input type="text" name = "id" th:value="${id}">
+        <span th:if="${errorId}" th:text="${errorId}"></span>
+    </div>
+    <div>
+        Ten sach: <input type="text" name = "title" th:value="${title}">
+        <span th:if="${errorTitle}" th:text="${errorTitle}"></span>
+    </div>
+    <div>
+        Tac gia: <input type="text" name = "author" th:value="${author}">
+        <span th:if="${errorAuthor}" th:text="${errorAuthor}"></span>
+    </div>
+    <div>
+        <label>The loai:</label>
+        <select name="category" id="">
+            <option value="">--Chon the loai--</option>
+            <option th:each="category : ${categories}"
+                    th:value="${category}"
+                    th:text="${category}"
+                    th:selected="${category == lastCategory}"
+            >
+            </option>
+        </select>
+        <span th:if="${errorCategory}" th:text="${errorCategory}"></span>
+    </div>
+    <button onclick="submit">Submit</button>
+    <hr>
+    <a th:href="@{/}">Quay về trang chủ</a>
+</form>
+</body>
+</html>
