@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Danh sach ung vien cho duyet</title>
+</head>
+<body>
+<h2>Danh sach cho duyet</h2>
+<table>
+    <tr>
+        <th>ID</th> <th>Name</th> <th>Position</th> <th>ExpYear</th> <th>Action</th>
+    </tr>
+    <tr th:each="c : ${candidates}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.name}"></td>
+        <td th:text="${c.position}"></td>
+        <td th:text="${c.expYear}"></td>
+        <td>
+            <form action="/pass" method="post">
+                <input type="hidden" name = "id" th:value="${c.id}">
+                <button onclick="submit">Pass</button>
+            </form>
+            <form action="/fail" method="post">
+                <input type="hidden" name = "id" th:value="${c.id}">
+                <button onclick="submit">Fail</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<hr>
+<a th:href="@{/}">Ve trang chu</a>
+</body>
+</html>

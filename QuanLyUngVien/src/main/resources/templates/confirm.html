@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Confirm</title>
+</head>
+<body>
+<h2>Xac nhan thong tin</h2>
+<ul>
+    <li><strong>ID:</strong><span th:text="${id}"></span></li>
+    <li><strong>Name:</strong><span th:text="${name}"></span></li>
+    <li><strong>Position:</strong><span th:text="${position}"></span></li>
+    <li><strong>ExpYear:</strong><span th:text="${expYear}"></span></li>
+</ul>
+<form action="/confirm" method="post">
+    <input type="hidden" name = "id" th:value="${id}">
+    <input type="hidden" name = "name" th:value="${name}">
+    <input type="hidden" name = "position" th:value="${position}">
+    <input type="hidden" name = "expYear" th:value="${expYear}">
+    <button onclick="submit">Confirm</button>
+    <button onclick="history.back()">Back</button>
+</form>
+</body>
+</html>

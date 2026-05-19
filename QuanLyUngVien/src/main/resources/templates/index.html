@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trang nhap thong tin</title>
+</head>
+<body>
+    <h2>Nhap thong tin</h2>
+    <form action="/submit" method="post">
+        <div>
+            <label>Ma SV:</label>
+            <input type="text" name = "id">
+            <span th:if="${errorId}" th:text="${errorId}"></span>
+        </div>
+        <div>
+            <label>Ten SV:</label>
+            <input type="text" name = "name">
+            <span th:if="${errorName}" th:text="${errorName}"></span>
+        </div>
+        <div>
+            Vi tri:
+            <select name="position">
+                <option value="">--Chọn--</option>
+                <option th:each="pos: ${position}"
+                        th:value="${pos}"
+                        th:text="${pos}"
+                        th:selected="${pos == lastPosition}"
+                >
+                </option>
+            </select>
+            <span th:if="${errorPosition}" th:text="${errorPosition}"></span>
+        </div>
+        <div>
+            <label>Nam kinh nghiem:</label>
+            <input type="text" name = "expYearStr">
+            <span th:if="${errorExp}" th:text="${errorExp}"></span>
+        </div>
+        <button onclick="submit">Submit</button>
+
+    </form>
+    <hr>
+    <a th:href="@{/list-pending}">Xem danh sach cho duyet</a>
+</body>
+</html>
